@@ -1,0 +1,5 @@
+<svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Apri menu">
+  <circle cx="22" cy="22" r="21.25" stroke="currentColor" stroke-width="1.5"/>
+  <path d="M13 22H31" stroke="currentColor" stroke-width="1.5"/>
+  <path d="M22 13L22 31" stroke="currentColor" stroke-width="1.5"/>
+</svg>
