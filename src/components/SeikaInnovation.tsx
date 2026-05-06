@@ -9,11 +9,11 @@ import Container from "./Container";
 // Tutti gli stroke a 1.5px (regola globale)
 function CirclesIllustration() {
   return (
-    <div className="w-full" aria-hidden="true">
+    <div className="w-full overflow-hidden" aria-hidden="true">
       <svg
         viewBox="-71 0 1310 310"
         fill="none"
-        className="w-full"
+        className="w-[200%] ml-[-50%] lg:w-full lg:ml-0"
         preserveAspectRatio="xMidYMid meet"
       >
         {/* Animazione CSS inline per le linee tratteggiate che scorrono */}
