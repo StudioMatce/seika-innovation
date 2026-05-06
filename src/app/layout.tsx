@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 
-/* Font Aptos — caricato localmente con i pesi usati nel design Figma */
+// SEZIONE: Font Aptos — 3 pesi dal design system + Bold come riserva
 const aptos = localFont({
   src: [
     {
@@ -18,11 +18,6 @@ const aptos = localFont({
     {
       path: "../fonts/Aptos-SemiBold.ttf",
       weight: "600",
-      style: "normal",
-    },
-    {
-      path: "../fonts/Aptos-Bold.ttf",
-      weight: "700",
       style: "normal",
     },
   ],
@@ -42,8 +37,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="it" className={`${aptos.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col">{children}</body>
+    <html lang="it" className={`${aptos.variable} antialiased`}>
+      <body className="min-h-dvh font-sans">{children}</body>
     </html>
   );
 }

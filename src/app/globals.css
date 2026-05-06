@@ -1,21 +1,34 @@
 @import "tailwindcss";
 
+/* ========================================
+   SEIKA INNOVATION — Design Tokens
+   Estratti da Figma, vedi DESIGN_SYSTEM.md
+   ======================================== */
+
 :root {
-  --color-seika-dark: #1c2d28;
-  --color-seika-green: #00a77d;
-  --color-seika-light: #ecefe5;
+  /* Spaziature */
+  --content-max-width: 1128px;
+  --section-padding-y: 120px;
+  --section-gap: 96px;
+  --element-gap: 48px;
+  --text-gap: 24px;
 }
 
 @theme inline {
-  --color-background: var(--color-seika-dark);
-  --color-foreground: #ffffff;
-  --font-sans: var(--font-aptos), sans-serif;
+  /* Colori Seika — prefisso "sk-" per evitare conflitti con palette Tailwind */
+  --color-sk-dark: #1c2d28;
+  --color-sk-green: #00a77d;
+  --color-sk-light: #ecefe5;
+  --color-sk-white: #ffffff;
+  --color-sk-super-dark: #131f1b;
+
+  /* Font */
+  --font-sans: var(--font-aptos, system-ui), sans-serif;
 }
 
 body {
-  background: var(--color-seika-dark);
-  color: #ffffff;
-  font-family: var(--font-sans);
+  background: var(--color-sk-dark);
+  color: var(--color-sk-white);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

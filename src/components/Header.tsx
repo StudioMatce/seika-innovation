@@ -1,97 +1,47 @@
-"use client";
+// SEZIONE: Header Desktop — server component, visibile solo da lg in su
+// Altezza 100px, bg dark, logo + nav + CTA "CONTATTI"
 
-import { useState } from "react";
 import Link from "next/link";
-import Logo from "./Logo";
+import Container from "./Container";
 
 const navLinks = [
-  { label: "Servizi", href: "#servizi" },
-  { label: "Seika Innovation", href: "#seika-innovation" },
-  { label: "Metodo", href: "#metodo" },
-  { label: "Risultati", href: "#risultati" },
-  { label: "Dove operiamo", href: "#dove-operiamo" },
+  { label: "SERVIZI", href: "#servizi" },
+  { label: "SEIKA INNOVATION", href: "#seika-innovation" },
+  { label: "METODO", href: "#metodo" },
+  { label: "RISULTATI", href: "#risultati" },
+  { label: "DOVE OPERIAMO", href: "#dove-operiamo" },
 ];
 
 export default function Header() {
-  const [mobileOpen, setMobileOpen] = useState(false);
-
   return (
-    <header className="sticky top-0 z-50 w-full bg-[#1c2d28]">
-      <div className="mx-auto flex h-[100px] max-w-[1128px] items-center justify-between px-6 xl:px-0">
-        {/* Logo */}
-        <Link href="/" className="shrink-0" aria-label="Seika Innovation — Home">
-          <Logo />
+    <header className="hidden lg:block sticky top-0 z-50 h-[100px] bg-sk-dark">
+      <Container className="flex h-full items-center justify-between">
+        {/* Logo 160×30 */}
+        <Link href="/" aria-label="Seika Innovation — Home" className="shrink-0">
+          <img src="/logo.svg" alt="Seika Innovation" width={160} height={30} />
         </Link>
 
-        {/* Nav desktop — valori esatti da Figma */}
-        <nav className="hidden items-center gap-[48px] lg:flex">
+        {/* Nav + CTA */}
+        <nav className="flex items-center gap-[48px]">
           {navLinks.map((link) => (
             <a
               key={link.href}
               href={link.href}
-              className="whitespace-nowrap text-center text-[14px] font-normal leading-none uppercase tracking-[1.4px] text-white transition-colors duration-200 hover:text-[#00a77d]"
+              className="text-[14px] font-normal leading-none uppercase tracking-[1.4px] text-sk-white whitespace-nowrap transition-colors duration-200 ease-in-out hover:text-sk-green focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
             >
               {link.label}
             </a>
           ))}
+
+          {/* CTA nav-outline: border 1px green, radius 30px */}
           <a
             href="#contatti"
-            className="flex items-center justify-center whitespace-nowrap rounded-[30px] border border-solid border-[#00a77d] px-[32px] py-[12px] text-center text-[14px] font-normal leading-none uppercase tracking-[1.4px] text-white transition-colors duration-200 hover:bg-[#00a77d]/10"
+            className="flex items-center justify-center whitespace-nowrap rounded-[30px] border border-sk-green px-[32px] py-[12px] text-[14px] font-normal leading-none uppercase tracking-[1.4px] text-sk-white transition-all duration-200 ease-in-out hover:bg-sk-green hover:text-sk-dark focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
           >
-            Contatti
+            CONTATTI
           </a>
         </nav>
-
-        {/* Hamburger mobile */}
-        <button
-          onClick={() => setMobileOpen(!mobileOpen)}
-          className="relative z-50 flex h-10 w-10 flex-col items-center justify-center gap-1.5 lg:hidden"
-          aria-label={mobileOpen ? "Chiudi menu" : "Apri menu"}
-        >
-          <span
-            className={`h-[1.5px] w-6 bg-white transition-all duration-300 ${
-              mobileOpen ? "translate-y-[4.5px] rotate-45" : ""
-            }`}
-          />
-          <span
-            className={`h-[1.5px] w-6 bg-white transition-all duration-300 ${
-              mobileOpen ? "-translate-y-[1.5px] -rotate-45" : ""
-            }`}
-          />
-        </button>
-      </div>
-
-      {/* Menu mobile overlay */}
-      <div
-        className={`fixed inset-0 z-40 bg-[#1c2d28] transition-all duration-500 lg:hidden ${
-          mobileOpen
-            ? "opacity-100 pointer-events-auto"
-            : "opacity-0 pointer-events-none"
-        }`}
-      >
-        <nav className="flex h-full flex-col items-center justify-center gap-8">
-          {navLinks.map((link, i) => (
-            <a
-              key={link.href}
-              href={link.href}
-              onClick={() => setMobileOpen(false)}
-              className="text-[18px] uppercase tracking-[1.4px] text-white transition-colors duration-200 hover:text-[#00a77d]"
-              style={{
-                transitionDelay: mobileOpen ? `${i * 50}ms` : "0ms",
-              }}
-            >
-              {link.label}
-            </a>
-          ))}
-          <a
-            href="#contatti"
-            onClick={() => setMobileOpen(false)}
-            className="mt-4 rounded-full border border-[#00a77d] px-8 py-3 text-[18px] uppercase tracking-[1.4px] text-white transition-colors duration-200 hover:bg-[#00a77d]/10"
-          >
-            Contatti
-          </a>
-        </nav>
-      </div>
+      </Container>
     </header>
   );
 }

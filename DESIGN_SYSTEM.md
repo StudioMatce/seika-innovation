@@ -170,10 +170,81 @@ Poi nel `<body>`: `className={aptos.variable}` e in Tailwind config: `fontFamily
 - Font: `Aptos Regular 400`, 14px, tracking 0.28px
 - Decorazione: underline, text-decoration-skip-ink none
 
+### ProgressBar (linea decorativa)
+
+Implementazione: **componente React `<ProgressBar />`** in `src/components/ProgressBar.tsx`. Client component (`"use client"`).
+
+**Struttura visiva**: `├────────────┤╌╌╌╌╌╌╌`
+- Tacca verticale a sinistra (1.5px × height, green)
+- Linea continua (1.5px, green, da 0 a fill%)
+- Tacca verticale al punto di giunzione (1.5px × height, green)
+- Linea tratteggiata (1.5px, colore variabile, da fill% a 100%)
+- Nessuna tacca a destra
+
+**Props**:
+```tsx
+fill?: number       // Percentuale parte piena (0–100). Default: 80
+height?: number     // Altezza tacche verticali in px. Default: 10
+dashColor?: "green" | "light"  // Colore linea tratteggiata. Default: "green"
+className?: string
+```
+
+**Trattini SVG**: `strokeDasharray="6 4"` (trattino 8px, gap 6px), strokeWidth 1.5
+
+**Animazione** (IntersectionObserver, threshold 0.5):
+1. Linea continua: da 0% a fill% — `1s ease-out`
+2. Linea tratteggiata: da 0% a (100−fill)% — `1.5s ease-out`, delay `900ms`
+3. Tacca giunzione: opacity 0→1 — `500ms ease-out`, delay `800ms`
+4. Rispetta `prefers-reduced-motion` (da implementare)
+
+**Uso per sezione**:
+- ShowCase: `dashColor="light"`, fill varia (35, 50, 100)
+- Servizi: `dashColor="green"` (da verificare su sfondo light)
+- Prioritizzazione, Risultati: da definire
+
+**Questo pattern grafico è il DNA visivo del sito** — le linee continua+tratteggiata ricorrono in tutte le sezioni.
+
+### Spessore linee — regola globale
+
+> **Tutte le linee del sito hanno spessore 1.5px.** Nessuna eccezione.
+> Questo vale per: stroke SVG, separatori CSS, ProgressBar, illustrazioni decorative, bordi cerchi.
+> Non usare mai 1px o 2px per linee decorative/strutturali.
+
 ### Separatori
 
-- Linea 1px solid `#1C2D28` (sezioni chiare)
-- Linea 1px solid (FAQ divisori tra item)
+- Linea continua: `h-[1.5px] bg-sk-dark` (sezioni chiare) o `bg-sk-light` (sezioni scure)
+- Linea tratteggiata: SVG `<line>` con `strokeWidth="1.5"` e `strokeDasharray="6 4"`
+- I separatori nelle card Servizi usano: continua sopra il titolo, tratteggiata sotto la descrizione
+
+### Illustrazioni decorative Servizi
+
+3 varianti SVG (viewBox 210×86), coordinate esatte da Figma. Tutti gli stroke a 1.5px.
+
+**Elementi ricorrenti**:
+- Cerchio grande: 62×62px (r=31), stroke green `#00A77D`, strokeWidth 1.5
+- Cerchio medio: 44×44px (r=22), stroke dark `#1C2D28`, strokeWidth 1.5
+- Dot pieno: 18×18px (r=9), fill dark `#1C2D28`
+- Linee connessione: tratteggiata `strokeDasharray="4 3"`, stroke dark, strokeWidth 1.5
+
+**Variante 1** (Frame 10): cerchio medio → linea → dot animato → linea → cerchio grande green
+**Variante 2** (Frame 9): cerchio grande green → linea → dot animato → linea → cerchio medio
+**Variante 3** (Frame 8): dot → linea → cerchio grande green animato → linea → dot
+
+**Tecnica di rendering**:
+- Linea tratteggiata unica tra i due elementi esterni
+- Elemento centrale sovrapposto con "alone" fill=colore sfondo sezione (#ECEFE5) per mascherare la linea sotto
+- Raggio alone: r+4px rispetto all'elemento (dot r=9 → alone r=13, cerchio r=31 → alone r=35)
+- **Stacco linea-elemento**: 6px tra la fine della linea e il bordo degli elementi alle estremità
+
+**Animazione elemento centrale**:
+- Oscillazione orizzontale ±6px
+- Durata: 2.5s, loop infinito
+- SVG `<animateTransform type="translate" values="-6,0;6,0;-6,0">`
+- L'alone si muove insieme all'elemento → la linea resta sempre mascherata
+
+**Layout**:
+- Desktop: le 3 illustrazioni in riga sopra le card, gap 182px
+- Mobile: ogni illustrazione sopra la propria card
 
 ### Dots decorativi
 
