@@ -5,6 +5,7 @@ import ShowCase from "@/components/ShowCase";
 import Servizi from "@/components/Servizi";
 import SeikaInnovation from "@/components/SeikaInnovation";
 import Metodo from "@/components/Metodo";
+import Prioritizzazione from "@/components/Prioritizzazione";
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
       <Servizi />
       <SeikaInnovation />
       <Metodo />
+      <Prioritizzazione />
     </>
   );
 }
