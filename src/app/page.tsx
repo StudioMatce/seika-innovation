@@ -4,6 +4,7 @@ import Hero from "@/components/Hero";
 import ShowCase from "@/components/ShowCase";
 import Servizi from "@/components/Servizi";
 import SeikaInnovation from "@/components/SeikaInnovation";
+import Metodo from "@/components/Metodo";
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
       <ShowCase />
       <Servizi />
       <SeikaInnovation />
+      <Metodo />
     </>
   );
 }
