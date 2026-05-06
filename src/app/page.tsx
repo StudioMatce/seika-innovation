@@ -3,6 +3,7 @@ import HeaderMobile from "@/components/HeaderMobile";
 import Hero from "@/components/Hero";
 import ShowCase from "@/components/ShowCase";
 import Servizi from "@/components/Servizi";
+import SeikaInnovation from "@/components/SeikaInnovation";
 
 export default function Home() {
   return (
@@ -12,6 +13,7 @@ export default function Home() {
       <Hero />
       <ShowCase />
       <Servizi />
+      <SeikaInnovation />
     </>
   );
 }

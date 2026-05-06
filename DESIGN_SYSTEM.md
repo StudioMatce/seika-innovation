@@ -246,6 +246,41 @@ className?: string
 - Desktop: le 3 illustrazioni in riga sopra le card, gap 182px
 - Mobile: ogni illustrazione sopra la propria card
 
+### Illustrazione Seika Innovation (Chi siamo)
+
+Illustrazione complessa di cerchi sovrapposti — rappresenta il processo di analisi. Implementata come SVG inline in `SeikaInnovation.tsx`, fuori dal Container (full viewport width). viewBox: `-71 0 1310 310`, i cerchi alle estremità vengono tagliati a metà dal viewport.
+
+**Composizione** (da sinistra a destra):
+1. Cerchio grande dark (r=143) — tagliato a metà dal bordo sinistro
+2. Cluster di 6 cerchi sovrapposti (r=143 ciascuno, offset 46px tra loro):
+   - I primi 4: stroke dark `#1C2D28`
+   - Gli ultimi 2: stroke light `#ECEFE5` (effetto dissolvenza, quasi invisibili su bg bianco)
+3. Linee tratteggiate dark con frecce (strokeDasharray="6 4")
+4. Cerchio grande green (r=143, stroke `#00A77D`)
+5. Linea tratteggiata verde con freccia
+6. Cerchio grande dark (r=143) — tagliato a metà dal bordo destro
+7. Glow verde radiale dietro il cerchio destro (r=80, gradiente `#00A77D` opacity 0.6→0)
+
+**Animazioni**:
+- **Cluster (6 cerchi)**: oscillazione orizzontale +30px, durata 5s, delay sfalsato 0.3s tra cerchi (effetto onda consequenziale)
+- **Cerchio green**: viaggio orizzontale da posizione iniziale fino alla punta della freccia verde (+420px), durata 10s, andata e ritorno
+- **Linee tratteggiate**: flusso dei trattini via `stroke-dashoffset` (8s dark, 6s verde)
+- Tutto rispetta `prefers-reduced-motion`
+
+**Tecnica cerchi tagliati**: il viewBox è più stretto della composizione, i cerchi alle estremità escono naturalmente — non servono clip-path.
+
+### Linguaggio visivo — Principi ricorrenti
+
+> Queste regole si applicano a tutte le illustrazioni decorative del sito.
+
+1. **Cerchi e linee**: il vocabolario visivo Seika si basa su cerchi (outline, mai pieni tranne i dot) e linee tratteggiate che li connettono
+2. **Colori illustrazioni**: dark `#1C2D28` per la struttura, green `#00A77D` per gli accenti/focus, light `#ECEFE5` per elementi che svaniscono
+3. **Dissolvenza**: gli elementi alle estremità sfumano verso il colore dello sfondo (stroke light su bg white, stroke dark su bg dark)
+4. **Alone bg**: gli elementi sovrapposti a linee usano un cerchio fill=colore sfondo come maschera (r+4px)
+5. **Stacco 6px**: le linee non toccano mai gli elementi — sempre 6px di spazio
+6. **Animazioni**: oscillazioni ±8–30px orizzontali, durate 2.5–10s, ease-in-out, mai aggressive. Flusso trattini via stroke-dashoffset. Delay sfalsati per effetti onda
+7. **Frecce**: triangoli pieni 7×8px alla fine delle linee tratteggiate, stesso colore della linea
+
 ### Dots decorativi
 
 Implementazione: **componente React `<Dots />`** riutilizzabile.

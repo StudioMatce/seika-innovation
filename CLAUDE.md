@@ -109,8 +109,8 @@ Per dettagli completi: `DESIGN_SYSTEM.md`
 - ✅ Font Aptos configurato in `next/font/local` (3 pesi)
 - ✅ Asset SVG ottimizzati in `public/` (loghi, icone)
 - ✅ `globals.css` con `@theme inline` e colori `sk-*`
-- ✅ Componenti: Container, Header (desktop), HeaderMobile (overlay), Hero, ShowCase, ProgressBar, Servizi
-- ⏳ Da fare: ShowCase loghi, Seika Innovation (chi siamo), Metodo, Prioritizzazione, Risultati, CaseStudy, Manifesto, FAQ, CTA finale, Footer
+- ✅ Componenti: Container, Header (desktop), HeaderMobile (overlay), Hero, ShowCase, ProgressBar, Servizi, SeikaInnovation (chi siamo)
+- ⏳ Da fare: ShowCase loghi, Metodo, Prioritizzazione, Risultati, CaseStudy, Manifesto, FAQ, CTA finale, Footer
 - ⏳ Sanity CMS: non configurato (dopo le sezioni)
 - ⏳ Dots decorativi: componente `<Dots />` da creare (spec in DESIGN_SYSTEM.md)
 
