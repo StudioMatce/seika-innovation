@@ -3,6 +3,7 @@
 // Mobile: intro + card stacked con illustrazione sopra ogni card (gap 82px)
 
 import Container from "./Container";
+import Dots from "./Dots";
 
 const services = [
   {
@@ -106,8 +107,9 @@ function ServiceIllustration({ variant }: { variant: 0 | 1 | 2 }) {
 
 export default function Servizi() {
   return (
-    <section id="servizi" className="bg-sk-light">
-      <Container className="py-[120px]">
+    <section id="servizi" className="relative bg-sk-light">
+      <Dots pattern="servizi" bg="light" />
+      <Container className="relative py-[120px]">
         {/* Intro */}
         <div className="flex flex-col gap-[24px] lg:gap-[24px]">
           <p className="text-[14px] font-semibold uppercase tracking-[1.4px] text-sk-green leading-normal">

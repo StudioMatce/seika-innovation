@@ -3,6 +3,7 @@
 // Desktop: testo 2 colonne body | Mobile: 1 colonna, illustrazione scalata
 
 import Container from "./Container";
+import Dots from "./Dots";
 
 // Illustrazione cerchi — coordinate esatte da Figma (Group 3, node 315:4729)
 // viewBox largo 1594×310, overflow hidden dal container
@@ -78,7 +79,8 @@ function CirclesIllustration() {
 
 export default function SeikaInnovation() {
   return (
-    <section id="seika-innovation" className="bg-sk-white overflow-hidden">
+    <section id="seika-innovation" className="relative bg-sk-white overflow-hidden">
+      <Dots pattern="seika-innovation" bg="white" />
       {/* Illustrazione cerchi — fuori dal Container, occupa tutta la larghezza */}
       <div className="pt-[120px]">
         <CirclesIllustration />

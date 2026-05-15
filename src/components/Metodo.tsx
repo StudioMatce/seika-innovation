@@ -3,6 +3,7 @@
 // Mobile: 1 colonna, foto circolare 97px sopra ogni step, no illustrazione
 
 import Container from "./Container";
+import Dots from "./Dots";
 
 const steps = [
   {
@@ -92,8 +93,9 @@ function EllipseIllustration() {
 
 export default function Metodo() {
   return (
-    <section id="metodo" className="bg-sk-light">
-      <Container className="py-[120px]">
+    <section id="metodo" className="relative bg-sk-light">
+      <Dots pattern="metodo" bg="light" />
+      <Container className="relative py-[120px]">
         {/* Intro */}
         <div className="flex flex-col gap-[42px]">
           <p className="text-[14px] font-semibold uppercase tracking-[1.4px] text-sk-green leading-normal">

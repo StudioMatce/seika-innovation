@@ -1,8 +1,12 @@
-// SEZIONE: Header Desktop — server component, visibile solo da lg in su
+"use client";
+
+// SEZIONE: Header Desktop — visibile solo da lg in su
 // Altezza 100px, bg dark, logo + nav + CTA "CONTATTI"
+// Si nasconde scrollando giù, riappare scrollando su (via useHideOnScroll)
 
 import Link from "next/link";
 import Container from "./Container";
+import { useHideOnScroll } from "@/lib/use-hide-on-scroll";
 
 const navLinks = [
   { label: "SERVIZI", href: "#servizi" },
@@ -13,8 +17,13 @@ const navLinks = [
 ];
 
 export default function Header() {
+  const hidden = useHideOnScroll();
   return (
-    <header className="hidden lg:block sticky top-0 z-50 h-[100px] bg-sk-dark">
+    <header
+      className={`sticky top-0 z-50 hidden h-[100px] bg-sk-dark transition-transform duration-300 ease-in-out lg:block ${
+        hidden ? "-translate-y-full" : "translate-y-0"
+      }`}
+    >
       <Container className="flex h-full items-center justify-between">
         {/* Logo 160×30 */}
         <Link href="/" aria-label="Seika Innovation — Home" className="shrink-0">

@@ -32,3 +32,22 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+/* Animazione micro-movement per i Dots decorativi: float verticale leggero + lieve scale.
+   Il delay viene applicato inline per dot (vedi Dots.tsx) per sfasare i movimenti. */
+@keyframes dot-float {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(-3px, -10px) scale(1.15);
+  }
+}
+
+/* Rispetta le preferenze di accessibilità: niente animazione se l'utente le ha disabilitate */
+@media (prefers-reduced-motion: reduce) {
+  [data-dot] {
+    animation: none !important;
+  }
+}

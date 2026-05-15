@@ -6,6 +6,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
+import { useHideOnScroll } from "@/lib/use-hide-on-scroll";
 
 const navLinks = [
   { label: "SERVIZI", href: "#servizi" },
@@ -17,8 +18,13 @@ const navLinks = [
 
 export default function HeaderMobile() {
   const [isOpen, setIsOpen] = useState(false);
+  const hidden = useHideOnScroll();
 
   const close = useCallback(() => setIsOpen(false), []);
+
+  // Quando il menu è aperto, l'header rimane sempre visibile
+  // (il body scroll è bloccato, ma per sicurezza forzo visible)
+  const isHidden = hidden && !isOpen;
 
   // Blocca lo scroll del body quando il menu è aperto
   useEffect(() => {
@@ -41,8 +47,12 @@ export default function HeaderMobile() {
 
   return (
     <header className="lg:hidden sticky top-0 z-50">
-      {/* Barra header — sempre visibile */}
-      <div className="h-[100px] bg-sk-dark flex items-center justify-center">
+      {/* Barra header — si nasconde scrollando giù, riappare scrollando su */}
+      <div
+        className={`flex h-[100px] items-center justify-center bg-sk-dark transition-transform duration-300 ease-in-out ${
+          isHidden ? "-translate-y-full" : "translate-y-0"
+        }`}
+      >
         <div className="w-full max-w-[515px] px-[30px] flex items-center justify-between">
           <Link href="/" aria-label="Seika Innovation — Home" className="shrink-0">
             <img src="/logo.svg" alt="Seika Innovation" width={160} height={30} />

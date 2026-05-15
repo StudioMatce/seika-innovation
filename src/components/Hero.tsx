@@ -2,11 +2,13 @@
 // Mobile: illustrazione sopra, testo sotto (1 colonna)
 
 import Container from "./Container";
+import Dots from "./Dots";
 
 export default function Hero() {
   return (
-    <section className="bg-sk-dark min-h-[calc(100dvh-100px)]">
-      <Container className="flex flex-col justify-end min-h-[calc(100dvh-100px)] lg:flex-row lg:items-end lg:pb-[100px]">
+    <section className="relative bg-sk-dark min-h-[calc(100dvh-100px)]">
+      <Dots pattern="hero" bg="dark" />
+      <Container className="relative flex flex-col justify-end min-h-[calc(100dvh-100px)] lg:flex-row lg:items-end lg:pb-[100px]">
         {/* Illustrazione placeholder — visibile su mobile in alto */}
         <div className="pt-[40px] lg:hidden">
           <div

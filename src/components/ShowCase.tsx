@@ -4,6 +4,7 @@
 
 import Container from "./Container";
 import ProgressBar from "./ProgressBar";
+import Dots from "./Dots";
 
 const metrics = [
   { value: "35%", label: "Riduzione del lead time produttivo", fill: 35 },
@@ -13,8 +14,9 @@ const metrics = [
 
 export default function ShowCase() {
   return (
-    <section className="bg-sk-super-dark">
-      <Container className="py-[100px]">
+    <section className="relative bg-sk-super-dark">
+      <Dots pattern="showcase" bg="super-dark" />
+      <Container className="relative py-[100px]">
         <div className="flex flex-col gap-[82px] lg:flex-row lg:gap-[48px]">
           {metrics.map((metric) => (
             <div key={metric.value} className="flex flex-1 flex-col gap-[24px]">

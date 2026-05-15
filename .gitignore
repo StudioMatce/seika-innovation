@@ -39,3 +39,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Microsoft Aptos Fonts archive — licenza non chiara per uso web
+Microsoft Aptos Fonts*/
