@@ -1,13 +1,14 @@
 // Route /studio: Sanity Studio embedded.
-// La catch-all [[...index]] permette sotto-route dello Studio (es. /studio/desk/...).
-// "use client" è obbligatorio: lo Studio usa React context (createContext) che non
-// può essere chiamato da un Server Component.
+// Server Component che fa da gate: se NEXT_PUBLIC_SANITY_PROJECT_ID è ancora
+// "placeholder" (cioè il cliente non ha attivato l'account), la route ritorna 404
+// così in produzione non si vede mai lo Studio con errore di connessione.
 
-"use client";
-
-import { NextStudio } from "next-sanity/studio";
-import config from "../../../../sanity.config";
+import { notFound } from "next/navigation";
+import StudioClient from "./StudioClient";
 
 export default function StudioPage() {
-  return <NextStudio config={config} />;
+  if (process.env.NEXT_PUBLIC_SANITY_PROJECT_ID === "placeholder") {
+    notFound();
+  }
+  return <StudioClient />;
 }
