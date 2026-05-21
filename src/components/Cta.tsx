@@ -2,25 +2,31 @@
 // Desktop: testo a sx (564px) + illustrazione a dx (466×423)
 // Mobile: illustrazione sopra (515×468), testo sotto
 // Note: la h2 è in sk-green (insolita rispetto alle altre sezioni che usano sk-dark/sk-light)
+//
+// heading e body sono parametrizzabili (default = testi homepage). Le pagine specifiche
+// (es. /dove-operiamo/treviso) possono passare i propri testi localizzati.
 
+import type { ReactNode } from "react";
 import Container from "./Container";
+import CtaIllustration from "./CtaIllustration";
 import Dots from "./Dots";
 
-export default function Cta() {
+interface CtaProps {
+  /** Heading h2 — default: testo homepage */
+  heading?: ReactNode;
+  /** Body sotto al heading — default: testo homepage */
+  body?: ReactNode;
+}
+
+export default function Cta({ heading, body }: CtaProps) {
   return (
     <section className="relative bg-sk-white">
       <Dots pattern="cta" bg="white" />
       <Container className="relative py-[120px]">
         <div className="flex flex-col items-start gap-[96px] lg:flex-row lg:items-center lg:gap-[24px]">
-          {/* Illustrazione — su mobile sopra, su desktop a destra */}
+          {/* Illustrazione — SVG inline (riusabile), su mobile sopra / desktop a destra */}
           <div className="order-1 w-full lg:order-2 lg:w-[564px] lg:flex lg:justify-end">
-            <img
-              src="/images/cta-illustration.png"
-              alt="Illustrazione orbita Interaction + Operation"
-              width={1328}
-              height={1207}
-              className="block h-auto w-full lg:w-[466px]"
-            />
+            <CtaIllustration className="block h-auto w-full lg:w-[466px]" />
           </div>
 
           {/* Testo */}
@@ -30,12 +36,16 @@ export default function Cta() {
                 Seika Innovation
               </p>
               <h2 className="text-[48px] font-normal leading-[48px] text-sk-green">
-                Quanta efficienza sta aspettando di essere scoperta nella tua azienda?
+                {heading ?? "Quanta efficienza sta aspettando di essere scoperta nella tua azienda?"}
               </h2>
             </div>
             <p className="text-[16px] font-normal leading-[normal] tracking-[0.32px] text-sk-dark">
-              L&apos;assessment operativo misura il potenziale nascosto e definisce come
-              sbloccarlo. 55+ aziende lo hanno già fatto.
+              {body ?? (
+                <>
+                  L&apos;assessment operativo misura il potenziale nascosto e definisce come
+                  sbloccarlo. 55+ aziende lo hanno già fatto.
+                </>
+              )}
             </p>
             {/* CTA button — stesso stile usato in Manifesto */}
             <a

@@ -1,0 +1,30 @@
+// PAGINA: /dove-operiamo — pagina dedicata alla presenza territoriale di Seika.
+// In costruzione step by step: per ora solo header + hero. Le altre sezioni arrivano dopo.
+
+import Header from "@/components/Header";
+import HeaderMobile from "@/components/HeaderMobile";
+import DoveOperiamoHero from "@/components/DoveOperiamoHero";
+import PresenzaTerritorio from "@/components/PresenzaTerritorio";
+import ServiziCards from "@/components/ServiziCards";
+import Cta from "@/components/Cta";
+import Footer from "@/components/Footer";
+
+export const metadata = {
+  title: "Dove operiamo — Seika Innovation",
+  description:
+    "Consulenza per l'efficienza operativa nel Nord Italia. Interveniamo in oltre 20 province tra Veneto, Lombardia, Emilia-Romagna e Trentino.",
+};
+
+export default function DoveOperiamoPage() {
+  return (
+    <>
+      <Header />
+      <HeaderMobile />
+      <DoveOperiamoHero />
+      <PresenzaTerritorio />
+      <ServiziCards />
+      <Cta />
+      <Footer />
+    </>
+  );
+}

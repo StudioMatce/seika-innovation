@@ -2,27 +2,30 @@
 // Desktop: intro + riga illustrazioni + 3 card in colonna (gap 48px)
 // Mobile: intro + card stacked con illustrazione sopra ogni card (gap 82px)
 
+import Link from "next/link";
 import Container from "./Container";
 import Dots from "./Dots";
 
+// I 3 servizi linkano alla pagina /servizi con anchor specifico per ogni servizio.
+// Gli slug devono combaciare con gli `id` degli <article> in ServiziLista.tsx.
 const services = [
   {
     title: "Analisi Dati e Reportistica",
     description:
       "Dashboard operative, KPI e reportistica automatizzata per decisioni basate sui dati.",
-    href: "#analisi-dati",
+    href: "/servizi#analisi-dati",
   },
   {
     title: "Ottimizzazione processi",
     description:
       "Mappatura, process mining e lean management per ridurre sprechi e tempi.",
-    href: "#ottimizzazione",
+    href: "/servizi#ottimizzazione-processi",
   },
   {
     title: "Intelligenza artificiale",
     description:
       "Agenti AI, automazione documentale e formazione per integrare l'AI nei flussi di lavoro.",
-    href: "#intelligenza-artificiale",
+    href: "/servizi#intelligenza-artificiale",
   },
 ];
 
@@ -58,7 +61,7 @@ function ServiceIllustration({ variant }: { variant: 0 | 1 | 2 }) {
           {/* Cerchio medio dark */}
           <ellipse cx="34" cy="43" rx="22" ry="22" stroke="#1C2D28" strokeWidth="1.5" />
           {/* Linea unica tratteggiata tra i due cerchi esterni */}
-          <line x1="62" y1="43" x2="130" y2="43" stroke="#1C2D28" strokeWidth="1.5" strokeDasharray="4 3" />
+          <line x1="62" y1="43" x2="130" y2="43" stroke="#1C2D28" strokeWidth="1.5" strokeDasharray="4 3" className="line-flow-slow" />
           {/* Cerchio grande green */}
           <ellipse cx="167" cy="43" rx="31" ry="31" stroke="#00A77D" strokeWidth="1.5" />
           {/* Dot centrale animato con alone */}
@@ -74,7 +77,7 @@ function ServiceIllustration({ variant }: { variant: 0 | 1 | 2 }) {
           {/* Cerchio grande green */}
           <ellipse cx="43" cy="43" rx="31" ry="31" stroke="#00A77D" strokeWidth="1.5" />
           {/* Linea unica tratteggiata tra i due cerchi esterni */}
-          <line x1="80" y1="43" x2="148" y2="43" stroke="#1C2D28" strokeWidth="1.5" strokeDasharray="4 3" />
+          <line x1="80" y1="43" x2="148" y2="43" stroke="#1C2D28" strokeWidth="1.5" strokeDasharray="4 3" className="line-flow-slow" />
           {/* Cerchio medio dark */}
           <ellipse cx="176" cy="43" rx="22" ry="22" stroke="#1C2D28" strokeWidth="1.5" />
           {/* Dot centrale animato con alone */}
@@ -90,7 +93,7 @@ function ServiceIllustration({ variant }: { variant: 0 | 1 | 2 }) {
           {/* Dot sinistro */}
           <circle cx="21" cy="43" r="9" fill="#1C2D28" />
           {/* Linea unica tratteggiata tra i due dot esterni */}
-          <line x1="36" y1="43" x2="174" y2="43" stroke="#1C2D28" strokeWidth="1.5" strokeDasharray="4 3" />
+          <line x1="36" y1="43" x2="174" y2="43" stroke="#1C2D28" strokeWidth="1.5" strokeDasharray="4 3" className="line-flow-slow" />
           {/* Dot destro */}
           <circle cx="189" cy="43" r="9" fill="#1C2D28" />
           {/* Cerchio grande green centrale animato con alone */}
@@ -159,13 +162,14 @@ export default function Servizi() {
                   <line x1="0" y1="1" x2="100%" y2="1" stroke="#1C2D28" strokeWidth="1.5" strokeDasharray="6 4" />
                 </svg>
 
-                {/* Link */}
-                <a
+                {/* Link al servizio dedicato sulla pagina /servizi (anchor specifico).
+                    Uso Next/Link per navigazione client-side senza full reload. */}
+                <Link
                   href={service.href}
                   className="text-[14px] font-normal leading-normal tracking-[0.28px] text-sk-green underline transition-colors duration-200 hover:text-sk-dark focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sk-green"
                 >
                   Scopri di più
-                </a>
+                </Link>
               </div>
             ))}
           </div>

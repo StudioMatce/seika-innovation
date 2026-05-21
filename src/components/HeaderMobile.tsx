@@ -13,7 +13,7 @@ const navLinks = [
   { label: "SEIKA INNOVATION", href: "#seika-innovation" },
   { label: "METODO", href: "#metodo" },
   { label: "RISULTATI", href: "#risultati" },
-  { label: "DOVE OPERIAMO", href: "#dove-operiamo" },
+  { label: "DOVE OPERIAMO", href: "/dove-operiamo" },
 ];
 
 export default function HeaderMobile() {

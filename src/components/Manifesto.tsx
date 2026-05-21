@@ -8,20 +8,20 @@ import type { CSSProperties, ReactNode } from "react";
 import Container from "./Container";
 import Dots from "./Dots";
 
-// Pill = etichetta arrotondata. 5 varianti di colore presenti nel design
+// Pill = etichetta arrotondata. 4 varianti di colore presenti nel design.
+// Nota: in Figma la pill "data" è tratteggiata, ma il pattern CSS `border-dashed`
+// è browser-controlled e non rispetta lo standard DS (strokeDasharray="6 4").
+// Scelta pragmatica: usa border solid anche per "data" → coerenza visiva con
+// le altre pill solid.
 type PillTone =
-  | "outline-dark" // human: bg light, border dark solid, text dark
-  | "outline-dark-dashed" // data: bg light, border dark dashed, text dark
+  | "outline-dark" // human, data: bg light, border dark solid, text dark
   | "fill-green" // intelligence: bg verde, text light
   | "fill-dark" // innovation: bg dark, text light
   | "fill-light"; // Ai: bg light, border light, text dark
 
-// Tutti i border a 1.5px per uniformità visiva (i border solid e dashed devono
-// avere lo stesso spessore percepito — a 1px su CSS la dashed risulta troppo
-// fitta rispetto al pattern SVG del resto del progetto)
+// Tutti i border a 1.5px per uniformità visiva con il resto del design system
 const pillClasses: Record<PillTone, string> = {
   "outline-dark": "bg-sk-light border-[1.5px] border-sk-dark text-sk-dark",
-  "outline-dark-dashed": "bg-sk-light border-[1.5px] border-dashed border-sk-dark text-sk-dark",
   "fill-green": "bg-sk-green border-[1.5px] border-sk-green text-sk-light",
   "fill-dark": "bg-sk-dark border-[1.5px] border-sk-dark text-sk-light",
   "fill-light": "bg-sk-light border-[1.5px] border-sk-light text-sk-dark",
@@ -48,9 +48,49 @@ function Pill({
   );
 }
 
+// Tipo per i 3 testi sotto i 3 stage dell'illustrazione. title come ReactNode per
+// permettere <br> espliciti dove serve. Esportato perché riusato da TrevisoTerritorio.
+export type ManifestoStage = {
+  title: ReactNode;
+  description: string;
+};
+
+// Testi di default — usati dalla home (sezione Manifesto). Altre pagine
+// (es. /dove-operiamo/treviso) possono passare i propri.
+const defaultStages: ManifestoStage[] = [
+  {
+    title: "L'inefficienza invisibile",
+    description:
+      "Le inefficienze più costose diventano abitudini operative. Nessuno le vede, nessuno le misura.",
+  },
+  {
+    title: (
+      <>
+        La complessità
+        <br aria-hidden="true" />
+        cresce nel tempo
+      </>
+    ),
+    description:
+      "Decisioni su dati incompleti generano complessità difficili da individuare dall'interno.",
+  },
+  {
+    title: (
+      <>
+        Rendere visibile
+        <br aria-hidden="true" />
+        ciò che conta
+      </>
+    ),
+    description:
+      "Analizziamo processi e dati per trasformare inefficienze nascoste in miglioramenti misurabili.",
+  },
+];
+
 // Illustrazione desktop — 3 stadi distribuiti con flex justify-between (come Figma)
-// Canvas fisso 1128px, frecce assolute sul canvas, pill assolute relative alle colonne
-function Illustration() {
+// Canvas fisso 1128px, frecce assolute sul canvas, pill assolute relative alle colonne.
+// Esportata per riuso (es. TrevisoTerritorio).
+export function Illustration({ stages = defaultStages }: { stages?: ManifestoStage[] }) {
   return (
     <div className="relative mx-auto" style={{ width: 1128 }}>
       {/* Riga con i 3 stadi distribuiti */}
@@ -74,16 +114,15 @@ function Illustration() {
           </div>
           <div className="hidden flex-col items-center gap-[6px] text-center lg:flex">
             <h3 className="w-[168px] text-[24px] font-normal leading-[normal] text-sk-green">
-              L&apos;inefficienza invisibile
+              {stages[0].title}
             </h3>
             <p className="w-[252px] text-[16px] font-normal leading-[normal] tracking-[0.32px] text-sk-dark">
-              Le inefficienze più costose diventano abitudini operative. Nessuno le vede, nessuno
-              le misura.
+              {stages[0].description}
             </p>
           </div>
           {/* Pill "data" — sopra l'ellisse, relative alla colonna */}
           <Pill
-            tone="outline-dark-dashed"
+            tone="outline-dark"
             className="absolute"
             style={{ left: 134, top: 202 }}
           >
@@ -113,13 +152,10 @@ function Illustration() {
           </div>
           <div className="hidden flex-col items-center gap-[6px] text-center lg:flex">
             <h3 className="w-[248px] text-[24px] font-normal leading-[normal] text-sk-green">
-              La complessità
-              <br />
-              cresce nel tempo
+              {stages[1].title}
             </h3>
             <p className="w-[309px] text-[16px] font-normal leading-[normal] tracking-[0.32px] text-sk-dark">
-              Decisioni su dati incompleti generano complessità difficili da individuare
-              dall&apos;interno.
+              {stages[1].description}
             </p>
           </div>
         </div>
@@ -137,13 +173,10 @@ function Illustration() {
           />
           <div className="hidden flex-col items-center gap-[6px] text-center lg:flex">
             <h3 className="w-[225px] text-[24px] font-normal leading-[normal] text-sk-green">
-              Rendere visibile
-              <br />
-              ciò che conta
+              {stages[2].title}
             </h3>
             <p className="w-[304px] text-[16px] font-normal leading-[normal] tracking-[0.32px] text-sk-dark">
-              Analizziamo processi e dati per trasformare inefficienze nascoste in miglioramenti
-              misurabili.
+              {stages[2].description}
             </p>
           </div>
 
@@ -231,8 +264,8 @@ function RotatedItem({
 
 // Illustrazione mobile — vertical stack di 3 ellissi ruotate + 2 frecce + 4 pill + 2 dot
 // Canvas naturale 515×1532px (l'ellisse bottom a top:1226 + height:306 estende fino a 1532).
-// Si scala via transform nel wrapper esterno.
-function MobileIllustration() {
+// Si scala via transform nel wrapper esterno. Esportata per riuso.
+export function MobileIllustration() {
   return (
     <div className="relative" style={{ width: 515, height: 1532 }}>
       {/* Ellisse top — orientata diagonalmente in alto */}
@@ -302,9 +335,9 @@ function MobileIllustration() {
         Analisi dati
       </Pill>
 
-      {/* Pill "reportistica" — dashed border dark */}
+      {/* Pill "reportistica" — solid border dark */}
       <Pill
-        tone="outline-dark-dashed"
+        tone="outline-dark"
         className="absolute"
         style={{ left: 178.71, top: 327 }}
       >
@@ -347,29 +380,13 @@ function MobileIllustration() {
   );
 }
 
-// Lista titoli + descrizioni stacked, mostrata sotto la mobile illustration
-function MobileTitles() {
-  const items = [
-    {
-      title: "L'inefficienza invisibile",
-      description:
-        "Le inefficienze più costose diventano abitudini operative. Nessuno le vede, nessuno le misura.",
-    },
-    {
-      title: "La complessità cresce nel tempo",
-      description:
-        "Decisioni su dati incompleti generano complessità difficili da individuare dall'interno.",
-    },
-    {
-      title: "Rendere visibile ciò che conta",
-      description:
-        "Analizziamo processi e dati per trasformare inefficienze nascoste in miglioramenti misurabili.",
-    },
-  ];
+// Lista titoli + descrizioni stacked, mostrata sotto la mobile illustration.
+// Esportata per riuso. Accetta `stages` opzionale (default = stages della home).
+export function MobileTitles({ stages = defaultStages }: { stages?: ManifestoStage[] }) {
   return (
     <div className="flex flex-col gap-[48px]">
-      {items.map((item) => (
-        <div key={item.title} className="flex flex-col gap-[12px]">
+      {stages.map((item, i) => (
+        <div key={i} className="flex flex-col gap-[12px]">
           <h3 className="text-[24px] font-normal leading-[normal] text-sk-green">
             {item.title}
           </h3>

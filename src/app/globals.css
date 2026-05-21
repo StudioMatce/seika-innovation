@@ -33,6 +33,30 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Offset per gli anchor link: l'header sticky è alto 100px → quando si naviga
+   a un anchor (es. /servizi#analisi-dati) il browser scrolla considerando
+   questo padding così il target non viene coperto dall'header. */
+html {
+  scroll-padding-top: 100px;
+}
+
+/* Utility per animare le frecce tratteggiate delle illustrazioni: i trattini
+   scorrono lungo il path simulando un flusso continuo "self-completing in loop".
+   Applicata via className="line-flow-slow" su <path>/<line> con strokeDasharray. */
+@keyframes line-flow {
+  to {
+    stroke-dashoffset: -100;
+  }
+}
+.line-flow-slow {
+  animation: line-flow 7s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .line-flow-slow {
+    animation: none;
+  }
+}
+
 /* Animazione micro-movement per i Dots decorativi: float verticale leggero + lieve scale.
    Il delay viene applicato inline per dot (vedi Dots.tsx) per sfasare i movimenti. */
 @keyframes dot-float {

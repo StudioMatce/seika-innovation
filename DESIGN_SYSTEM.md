@@ -276,7 +276,10 @@ Illustrazione complessa di cerchi sovrapposti — rappresenta il processo di ana
 1. **Cerchi e linee**: il vocabolario visivo Seika si basa su cerchi (outline, mai pieni tranne i dot) e linee tratteggiate che li connettono
 2. **Colori illustrazioni**: dark `#1C2D28` per la struttura, green `#00A77D` per gli accenti/focus, light `#ECEFE5` per elementi che svaniscono
 3. **Dissolvenza**: gli elementi alle estremità sfumano verso il colore dello sfondo (stroke light su bg white, stroke dark su bg dark)
-4. **Alone bg**: gli elementi sovrapposti a linee usano un cerchio fill=colore sfondo come maschera (r+4px)
+4. **Alone bg**: gli elementi sovrapposti a linee/tracciati usano una "maschera" del colore sfondo per non interrompere visivamente il path sottostante. Tre varianti:
+   - **Cerchi outline-only sovrapposti a una linea**: cerchio "alone" separato con `fill = colore sfondo` e raggio `r+4px`, posizionato sotto l'elemento
+   - **Cerchi outline + fill** (es. Interaction in CtaIllustration): `fill = colore sfondo` (oltre allo `stroke` outline tratteggiato) — l'intero cerchio maschera ciò che ci passa sotto
+   - **Dots pieni sui tracciati** (es. dots in CtaIllustration, dot del blocco 02 Servizi): `stroke = colore sfondo` con `strokeWidth = 4–5` (dipende dal raggio del dot — più grande il dot, più spesso l'alone perché copra bene la linea sotto) — alone integrato nel cerchio stesso
 5. **Stacco 6px**: le linee non toccano mai gli elementi — sempre 6px di spazio
 6. **Animazioni**: oscillazioni ±8–30px orizzontali, durate 2.5–10s, ease-in-out, mai aggressive. Flusso trattini via stroke-dashoffset. Delay sfalsati per effetti onda
 7. **Frecce**: triangoli pieni 7×8px alla fine delle linee tratteggiate, stesso colore della linea

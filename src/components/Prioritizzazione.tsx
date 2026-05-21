@@ -13,9 +13,13 @@ import Dots from "./Dots";
 export function ScatterChartOld() {
   return (
     <div className="relative w-full h-full" aria-hidden="true">
+      {/* SVG griglia con preserveAspectRatio="none" si stira al container.
+          vectorEffect="non-scaling-stroke" mantiene strokeWidth e dasharray in pixel CSS
+          uniformi, indipendentemente dallo stretching del viewBox — così il tratteggio
+          è coerente con i cerchi outline (entrambi "6 4" reali). */}
       <svg viewBox="0 0 717 276" fill="none" className="absolute inset-0 w-full h-full" preserveAspectRatio="none">
-        <line x1="0" y1="92" x2="717" y2="92" stroke="#00A77D" strokeWidth="1.5" strokeDasharray="6 4" />
-        <line x1="0" y1="184" x2="717" y2="184" stroke="#00A77D" strokeWidth="1.5" strokeDasharray="6 4" />
+        <line x1="0" y1="92" x2="717" y2="92" stroke="#00A77D" strokeWidth="1.5" strokeDasharray="6 4" vectorEffect="non-scaling-stroke" />
+        <line x1="0" y1="184" x2="717" y2="184" stroke="#00A77D" strokeWidth="1.5" strokeDasharray="6 4" vectorEffect="non-scaling-stroke" />
         {Array.from({ length: 11 }).map((_, i) => (
           <line
             key={i}
@@ -26,6 +30,7 @@ export function ScatterChartOld() {
             stroke={i % 2 === 0 ? "#00A77D" : "#ECEFE5"}
             strokeWidth="1.5"
             strokeDasharray="6 4"
+            vectorEffect="non-scaling-stroke"
           />
         ))}
       </svg>
@@ -38,13 +43,13 @@ export function ScatterChartOld() {
       <div className="absolute" style={{ left: "31%", top: "58%", transform: "translate(-50%, -50%)" }}>
         <svg width="44" height="44" viewBox="0 0 44 44" fill="none">
           <circle cx="22" cy="22" r="20" fill="#1C2D28" />
-          <circle cx="22" cy="22" r="17" fill="#1C2D28" stroke="#ECEFE5" strokeWidth="1.5" strokeDasharray="6 4" />
+          <circle cx="22" cy="22" r="17" fill="#1C2D28" stroke="#ECEFE5" strokeWidth="1.5" strokeDasharray="6 4" vectorEffect="non-scaling-stroke" />
         </svg>
       </div>
       <div className="absolute" style={{ left: "70%", top: "26%", transform: "translate(-50%, -50%)" }}>
         <svg width="44" height="44" viewBox="0 0 44 44" fill="none">
           <circle cx="22" cy="22" r="20" fill="#1C2D28" />
-          <circle cx="22" cy="22" r="17" fill="#1C2D28" stroke="#ECEFE5" strokeWidth="1.5" strokeDasharray="6 4" />
+          <circle cx="22" cy="22" r="17" fill="#1C2D28" stroke="#ECEFE5" strokeWidth="1.5" strokeDasharray="6 4" vectorEffect="non-scaling-stroke" />
         </svg>
       </div>
     </div>
