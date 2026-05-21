@@ -4,6 +4,8 @@
 // Riusabile in tutte le sezioni CTA del sito (homepage Cta + future).
 // Coordinate dal nodo Figma 369:1491 (viewBox 562×565).
 
+import OperationOrb from "./OperationOrb";
+
 interface CtaIllustrationProps {
   className?: string;
   /** Colore di sfondo della sezione contenitore — usato per gli "aloni" sui cerchi
@@ -23,18 +25,6 @@ export default function CtaIllustration({ className, bgColor = "#FFFFFF" }: CtaI
       className={className}
     >
       <defs>
-        {/* Gradient radiale del "glow" verde — vedi commento sopra ogni stop */}
-        <radialGradient id="cta-green-glow">
-          {/* I primi 32% del gradient (raggio 0→58) sono coperti dal cerchio Operation,
-              quindi mantengo opacity 1 fino a quel punto. La sfumatura visibile parte
-              dal 32% in poi, partendo intensa e scendendo rapidamente verso il bordo. */}
-          <stop offset="0%" stopColor="#00A77D" stopOpacity="1" />
-          <stop offset="32%" stopColor="#00A77D" stopOpacity="0.9" />
-          <stop offset="55%" stopColor="#00A77D" stopOpacity="0.4" />
-          <stop offset="80%" stopColor="#00A77D" stopOpacity="0.08" />
-          <stop offset="100%" stopColor="#00A77D" stopOpacity="0" />
-        </radialGradient>
-
         {/* Path nascosti — riferimenti per <animateMotion> dei dots che viaggiano sui tracciati.
             Non vengono renderizzati (fill=none + non sono "usati" da <use>). */}
         {/* Ellisse diagonale — 2 versioni del path, con punto di partenza diverso:
@@ -102,11 +92,6 @@ export default function CtaIllustration({ className, bgColor = "#FFFFFF" }: CtaI
         </animateMotion>
       </circle>
 
-      {/* Glow radiale verde — raggio 180 per concentrare la sfumatura attorno al cerchio
-          Operation. Renderizzato DOPO i 2 dots dell'ellisse, così li copre quando
-          ci passano sotto. */}
-      <circle cx="380" cy="368" r="180" fill="url(#cta-green-glow)" />
-
       {/* Cerchio Interaction — outline dark tratteggiato, r 97.5.
           fill=bgColor maschera l'anello diagonale che passa sotto.
           Animazione: rotazione lenta in senso orario via stroke-dashoffset. */}
@@ -135,20 +120,20 @@ export default function CtaIllustration({ className, bgColor = "#FFFFFF" }: CtaI
         className="cta-spin-satellite"
       />
 
-      {/* Cerchio Operation — fill verde pieno, r 58 */}
-      <circle cx="380" cy="368" r="58" fill="#00A77D" />
+      {/* "Maschera" bg-color attorno a Operation — coperta dal glow verde dell'OperationOrb,
+          serve a tagliare l'ellisse che passa sotto e i 2 dots quando attraversano la zona.
+          Raggio scelto vicino a dove il glow diventa invisibile (~r 170) così la
+          discontinuità della curva resta nascosta dal glow stesso. */}
+      <circle cx="380" cy="368" r="170" fill={bgColor} />
 
-      {/* Bordo light tratteggiato sopra il cerchio Operation — stesso centro/raggio.
-          Animazione: rotazione in senso orario (8s) via stroke-dashoffset. */}
-      <circle
-        cx="380"
-        cy="368"
-        r="58"
-        stroke="#ECEFE5"
-        strokeWidth="1.5"
-        strokeDasharray="6 4"
-        fill="none"
-        className="cta-spin-operation"
+      {/* Orb Operation — glow + disco verde + bordo light dashato.
+          Renderizzato DOPO i 2 dots dell'ellisse: il glow li copre quando ci passano sotto.
+          Animazione di rotazione CW via stroke-dashoffset applicata al bordo dashato. */}
+      <OperationOrb
+        cx={380}
+        cy={368}
+        glowId="cta-green-glow"
+        dashedClassName="cta-spin-operation"
       />
 
       {/* Dot che viaggia sul cerchio Interaction — sopra al cerchio (deve restare visibile

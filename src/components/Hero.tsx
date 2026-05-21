@@ -3,22 +3,21 @@
 
 import Container from "./Container";
 import Dots from "./Dots";
+import HeroIllustration from "./HeroIllustration";
 
 export default function Hero() {
   return (
     <section className="relative bg-sk-dark min-h-[calc(100dvh-100px)]">
       <Dots pattern="hero" bg="dark" />
       <Container className="relative flex flex-col justify-end min-h-[calc(100dvh-100px)] lg:flex-row lg:items-end lg:pb-[100px]">
-        {/* Illustrazione placeholder — visibile su mobile in alto */}
-        <div className="pt-[40px] lg:hidden">
-          <div
-            className="w-full h-[200px] sm:h-[336px] rounded-[12px] bg-sk-dark border border-white/10"
-            aria-hidden="true"
-          />
+        {/* Illustrazione — visibile su mobile in alto */}
+        <div className="pt-[40px] lg:hidden flex justify-center">
+          <HeroIllustration className="w-full max-w-[400px] h-auto" idScope="mobile" />
         </div>
 
-        {/* Contenuto testo */}
-        <div className="flex flex-col gap-[32px] sm:gap-[48px] items-start py-[40px] sm:py-[60px] lg:py-0 lg:w-[506px]">
+        {/* Contenuto testo — su desktop sollevato di 82px rispetto al bottom
+            (l'illustrazione resta ancorata in basso grazie a items-end del Container) */}
+        <div className="flex flex-col gap-[32px] sm:gap-[48px] items-start py-[40px] sm:py-[60px] lg:py-0 lg:mb-[82px] lg:w-[506px]">
           {/* Label */}
           <div className="flex flex-col gap-[24px] items-start w-full">
             <p className="text-[14px] font-semibold uppercase tracking-[1.4px] text-sk-green leading-normal">
@@ -45,12 +44,9 @@ export default function Hero() {
           </a>
         </div>
 
-        {/* Placeholder illustrazione desktop — a destra */}
+        {/* Illustrazione desktop — a destra */}
         <div className="hidden lg:flex flex-1 items-end justify-end pl-[48px]">
-          <div
-            className="w-[466px] h-[423px] rounded-[12px] bg-sk-dark border border-white/10"
-            aria-hidden="true"
-          />
+          <HeroIllustration className="w-full max-w-[562px] h-auto" idScope="desktop" />
         </div>
       </Container>
     </section>

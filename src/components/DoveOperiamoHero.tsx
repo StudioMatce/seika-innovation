@@ -13,7 +13,7 @@ export default function DoveOperiamoHero() {
       <Dots pattern="hero" bg="dark" />
 
       <Container className="relative flex-1 flex flex-col justify-end">
-        <div className="flex flex-col gap-[48px] py-[60px] sm:py-[80px] lg:flex-row lg:items-center lg:gap-[48px] lg:pb-[100px] lg:pt-[100px]">
+        <div className="flex flex-col gap-[48px] py-[60px] sm:py-[80px] lg:flex-row lg:items-center lg:gap-[48px] lg:pb-[182px] lg:pt-[100px]">
           {/* Illustrazione griglia — mobile: sopra il testo (full width, proporzioni naturali);
               desktop: a destra, aspect ratio più verticale (~3/2) per dare più altezza. */}
           <div className="order-1 w-full lg:order-2 lg:w-1/2">
