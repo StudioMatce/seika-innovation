@@ -20,7 +20,7 @@ interface CtaProps {
 
 export default function Cta({ heading, body }: CtaProps) {
   return (
-    <section className="relative bg-sk-white">
+    <section id="contatti" className="relative bg-sk-white">
       <Dots pattern="cta" bg="white" />
       <Container className="relative py-[120px]">
         <div className="flex flex-col items-start gap-[96px] lg:flex-row lg:items-center lg:gap-[24px]">

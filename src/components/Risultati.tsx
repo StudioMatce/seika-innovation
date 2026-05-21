@@ -109,7 +109,7 @@ function MetricCard({
 
 export default function Risultati() {
   return (
-    <section className="relative bg-sk-super-dark">
+    <section id="risultati" className="relative bg-sk-super-dark">
       <Dots pattern="risultati" bg="super-dark" />
       <Container className="relative py-[120px] lg:py-[100px]">
         {/* Intro */}
