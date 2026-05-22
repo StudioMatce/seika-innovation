@@ -8,7 +8,7 @@ import Dots from "./Dots";
 
 type Metric = {
   eyebrow: string; // es. "LEAD TIME"
-  value: string; // es. "55 +"
+  value: string; // es. "60 +"
   label: string; // es. "Aziende affiancate"
   description: string; // testo finale, supporta \n
   image: string;
@@ -23,7 +23,7 @@ type Metric = {
 const metrics: Metric[] = [
   {
     eyebrow: "LEAD TIME",
-    value: "55 +",
+    value: "60 +",
     label: "Aziende affiancate",
     description:
       "Manifatturiero, healthcare, logistica, finanza, retail.\nDa 1M a 5B+ di fatturato.",

@@ -10,7 +10,7 @@ import Dots from "./Dots";
 const stats = [
   {
     label: "Clienti",
-    number: "55 +",
+    number: "60 +",
     title: "Aziende affiancate",
     description: "Manifatturiero, healthcare, logistica, finanza, retail. Da 1M a 5B+ di fatturato.",
   },

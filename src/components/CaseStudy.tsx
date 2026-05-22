@@ -27,7 +27,7 @@ const items: CaseStudyItem[] = [
     title: "Comunicazione fornitori",
     description:
       "1.100 fornitori, 250 commesse.\nEmail manuali sostituite con automazione intelligente.",
-    percentage: "83%",
+    percentage: "-83%",
     fillPercent: 83,
     barLabel: "Ritardi consegne",
   },

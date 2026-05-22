@@ -43,7 +43,7 @@ export default function Cta({ heading, body }: CtaProps) {
               {body ?? (
                 <>
                   L&apos;assessment operativo misura il potenziale nascosto e definisce come
-                  sbloccarlo. 55+ aziende lo hanno già fatto.
+                  sbloccarlo. 60+ aziende lo hanno già fatto.
                 </>
               )}
             </p>

@@ -29,7 +29,7 @@ const faqs: FaqItem[] = [
     n: "03",
     question: "In quali settori?",
     answer:
-      "Manifatturiero, logistica, costruzioni, healthcare, pharma, servizi finanziari, arredo navale, retail. 55+ aziende in 18 mesi, da 1M a oltre 5 miliardi di fatturato.",
+      "Manifatturiero, logistica, costruzioni, healthcare, pharma, servizi finanziari, arredo navale, retail. 60+ aziende in 18 mesi, da 1M a oltre 5 miliardi di fatturato.",
   },
   {
     n: "04",
