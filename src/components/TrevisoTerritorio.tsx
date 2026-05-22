@@ -63,7 +63,7 @@ export default function TrevisoTerritorio() {
             migliorare efficienza operativa e capacità decisionale.
           </p>
           <a
-            href="#contatti"
+            href="mailto:info@seikainnovation.com"
             className="inline-flex w-fit items-center justify-center whitespace-nowrap rounded-full border-[1.5px] border-sk-green bg-sk-green px-[32px] py-[12px] text-[16px] font-normal text-sk-light transition-colors duration-200 hover:bg-sk-super-dark hover:border-sk-super-dark"
           >
             Richiedi un assessment operativo

@@ -37,7 +37,7 @@ export default function Hero() {
 
           {/* CTA outline — border 1.5px green, radius 33px */}
           <a
-            href="#contatti"
+            href="mailto:info@seikainnovation.com"
             className="inline-flex items-center justify-center whitespace-nowrap rounded-[33px] border-[1.5px] border-sk-green px-[32px] py-[12px] text-[16px] font-normal leading-none text-sk-light transition-all duration-200 ease-in-out hover:bg-sk-green hover:text-sk-dark active:bg-sk-dark active:border-sk-dark active:text-sk-light focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
           >
             Richiedi un assessment operativo

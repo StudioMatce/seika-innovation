@@ -44,7 +44,7 @@ export default function Header() {
 
           {/* CTA nav-outline: border 1px green, radius 30px */}
           <a
-            href="#contatti"
+            href="mailto:info@seikainnovation.com"
             className="flex items-center justify-center whitespace-nowrap rounded-[30px] border border-sk-green px-[32px] py-[12px] text-[14px] font-normal leading-none uppercase tracking-[1.4px] text-sk-white transition-all duration-200 ease-in-out hover:bg-sk-green hover:text-sk-dark focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
           >
             CONTATTI

@@ -37,7 +37,7 @@ export default function PresenzaTerritorio() {
 
             {/* CTA outline green */}
             <a
-              href="#contatti"
+              href="mailto:info@seikainnovation.com"
               className="inline-flex w-fit items-center justify-center whitespace-nowrap rounded-[33px] border-[1.5px] border-sk-green px-[32px] py-[12px] text-[16px] font-normal text-sk-dark transition-all duration-200 ease-in-out hover:bg-sk-green hover:text-sk-light focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sk-green"
             >
               Richiedi un assessment operativo

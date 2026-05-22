@@ -107,7 +107,7 @@ export default function HeaderMobile() {
 
               {/* CTA CONTATTI */}
               <a
-                href="#contatti"
+                href="mailto:info@seikainnovation.com"
                 onClick={close}
                 className="flex items-center justify-center rounded-[33px] border-[1.5px] border-sk-green px-[32px] py-[12px] text-[24px] sm:text-[32px] font-normal leading-none uppercase tracking-[2.4px] sm:tracking-[3.2px] text-sk-white transition-all duration-200 hover:bg-sk-green hover:text-sk-dark focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
               >

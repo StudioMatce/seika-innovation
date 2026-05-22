@@ -49,7 +49,7 @@ export default function Cta({ heading, body }: CtaProps) {
             </p>
             {/* CTA button — stesso stile usato in Manifesto */}
             <a
-              href="#contatti"
+              href="mailto:info@seikainnovation.com"
               className="inline-flex w-fit items-center justify-center whitespace-nowrap rounded-full border-[1.5px] border-sk-green bg-sk-green px-[32px] py-[12px] text-[16px] font-normal text-sk-light transition-colors duration-200 hover:border-sk-super-dark hover:bg-sk-super-dark"
             >
               Richiedi un assessment operativo
