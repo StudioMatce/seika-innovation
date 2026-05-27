@@ -8,11 +8,12 @@ import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 import { useHideOnScroll } from "@/lib/use-hide-on-scroll";
 
+// Vedi nota in Header.tsx: `/#ancora` per tornare alla home da pagine interne
 const navLinks = [
-  { label: "SERVIZI", href: "#servizi" },
-  { label: "SEIKA INNOVATION", href: "#seika-innovation" },
-  { label: "METODO", href: "#metodo" },
-  { label: "RISULTATI", href: "#risultati" },
+  { label: "SERVIZI", href: "/#servizi" },
+  { label: "SEIKA INNOVATION", href: "/#seika-innovation" },
+  { label: "METODO", href: "/#metodo" },
+  { label: "RISULTATI", href: "/#risultati" },
   { label: "DOVE OPERIAMO", href: "/dove-operiamo" },
 ];
 

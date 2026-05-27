@@ -8,11 +8,15 @@ import Link from "next/link";
 import Container from "./Container";
 import { useHideOnScroll } from "@/lib/use-hide-on-scroll";
 
+// Gli href con `/#ancora` (non solo `#ancora`) garantiscono che da qualsiasi
+// pagina interna (es. /servizi, /dove-operiamo) il link torni alla home e poi
+// scrolli alla sezione. Senza la `/` iniziale il browser cerca l'id nella
+// pagina corrente e, non trovandolo, il link sembra "rotto".
 const navLinks = [
-  { label: "SERVIZI", href: "#servizi" },
-  { label: "SEIKA INNOVATION", href: "#seika-innovation" },
-  { label: "METODO", href: "#metodo" },
-  { label: "RISULTATI", href: "#risultati" },
+  { label: "SERVIZI", href: "/#servizi" },
+  { label: "SEIKA INNOVATION", href: "/#seika-innovation" },
+  { label: "METODO", href: "/#metodo" },
+  { label: "RISULTATI", href: "/#risultati" },
   { label: "DOVE OPERIAMO", href: "/dove-operiamo" },
 ];
 
